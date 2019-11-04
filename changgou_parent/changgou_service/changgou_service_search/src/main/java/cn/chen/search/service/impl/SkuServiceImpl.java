@@ -10,6 +10,10 @@ import entity.Result;
 import org.apache.commons.lang.StringUtils;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.aggregations.AggregationBuilders;
+import org.elasticsearch.search.aggregations.Aggregations;
+import org.elasticsearch.search.aggregations.bucket.terms.StringTerms;
+import org.elasticsearch.search.aggregations.bucket.terms.TermsAggregationBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.aggregation.AggregatedPage;
@@ -18,6 +22,7 @@ import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilde
 import org.springframework.stereotype.Service;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,25 +65,10 @@ public class SkuServiceImpl implements SkuService {
         //1、构建基本查询条件
         NativeSearchQueryBuilder builder = builderBasicQuery(searchMap);
         //2、根据查询条件-搜索商品列表
-        searchList(map, builder);
+        searchList(builder,map);
+        //3、分组查询商品分类列表
+        searchCategoryList(builder,map);
         return map;
-    }
-
-
-    /**
-     * 根据查询条件-搜索商品列表
-     * @param map 结果集
-     * @param builder 查询条件构建器
-     */
-    private void searchList(Map map, NativeSearchQueryBuilder builder) {
-        //3、获取NativeSearchQuery搜索条件对象-builder.build()
-        NativeSearchQuery query = builder.build();
-        //4.查询数据-esTemplate.queryForPage(条件对象,搜索结果对象)
-        AggregatedPage<SkuInfo> page = esTemplate.queryForPage(query, SkuInfo.class);
-        //5、包装结果并返回
-        map.put("rows", page.getContent());
-        map.put("total", page.getTotalElements());
-        map.put("totalPages", page.getTotalPages());
     }
 
     /**
@@ -100,5 +90,49 @@ public class SkuServiceImpl implements SkuService {
             }
         }
         return builder;
+    }
+
+
+    /**
+     * 根据查询条件-搜索商品列表
+     * @param map 结果集
+     * @param builder 查询条件构建器
+     */
+    private void searchList(NativeSearchQueryBuilder builder, Map map) {
+        //3、获取NativeSearchQuery搜索条件对象-builder.build()
+        NativeSearchQuery query = builder.build();
+        //4.查询数据-esTemplate.queryForPage(条件对象,搜索结果对象)
+        AggregatedPage<SkuInfo> page = esTemplate.queryForPage(query, SkuInfo.class);
+        //5、包装结果并返回
+        map.put("rows", page.getContent());
+        map.put("total", page.getTotalElements());
+        map.put("totalPages", page.getTotalPages());
+    }
+
+    /**
+     * 分组查询商品分类列表
+     * @param builder  查询条件
+     * @param map 查询结果集
+     */
+    private void searchCategoryList(NativeSearchQueryBuilder builder, Map map) {
+        //1.设置分组域名-termsAggregationBuilder = AggregationBuilders.terms(别名).field(域名);
+        TermsAggregationBuilder termsAggregationBuilder = AggregationBuilders.terms("group_category").field("categoryName");
+        //2.添加分组查询参数-builder.addAggregation(termsAggregationBuilder)
+        builder.addAggregation(termsAggregationBuilder);
+        //3.执行搜索-esTemplate.queryForPage(builder.build(), SkuInfo.class)
+        AggregatedPage<SkuInfo> page = esTemplate.queryForPage(builder.build(), SkuInfo.class);
+        //4.获取所有分组查询结果集-page.getAggregations()
+        Aggregations aggregations = page.getAggregations();
+        //5.提取分组结果数据-stringTerms = aggregations.get(填入刚才查询时的别名)
+        StringTerms stringTerms = aggregations.get("group_category");
+        //6.定义分类名字列表-categoryList = new ArrayList<String>()
+        List<String> categoryList = new ArrayList<String>();
+        //7.遍历读取分组查询结果-stringTerms.getBuckets().for
+        for (StringTerms.Bucket bucket : stringTerms.getBuckets()) {
+            //7.1获取分类名字，并将分类名字存入到集合中-bucket.getKeyAsString()
+            categoryList.add(bucket.getKeyAsString());
+        }
+        //8.返回分类数据列表-map.put("categoryList", categoryList)
+        map.put("categoryList", categoryList);
     }
 }

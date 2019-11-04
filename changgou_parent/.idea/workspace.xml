@@ -76,10 +76,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/changgou_service/changgou_service_search/src/main/java/cn/chen/search/service/impl/SkuServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="607">
-              <caret line="90" column="71" selection-start-line="90" selection-start-column="47" selection-end-line="90" selection-end-column="71" />
+            <state relative-caret-position="404">
+              <caret line="118" column="99" selection-start-line="118" selection-start-column="85" selection-end-line="118" selection-end-column="99" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#4493#4501#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -834,12 +835,12 @@
       <workItem from="1572264743959" duration="5661000" />
       <workItem from="1572311205626" duration="6137000" />
       <workItem from="1572349622224" duration="11945000" />
-      <workItem from="1572455611960" duration="15011000" />
+      <workItem from="1572455611960" duration="15819000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38754000" />
+    <option name="totallyTimeSpent" value="39562000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
@@ -1267,10 +1268,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/changgou_service/changgou_service_search/src/main/java/cn/chen/search/service/impl/SkuServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="607">
-          <caret line="90" column="71" selection-start-line="90" selection-start-column="47" selection-end-line="90" selection-end-column="71" />
+        <state relative-caret-position="404">
+          <caret line="118" column="99" selection-start-line="118" selection-start-column="85" selection-end-line="118" selection-end-column="99" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#4493#4501#0" expanded="true" />
           </folding>
         </state>
       </provider>
