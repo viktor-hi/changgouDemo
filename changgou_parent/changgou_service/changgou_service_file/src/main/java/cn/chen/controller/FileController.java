@@ -25,7 +25,7 @@ public class FileController {
         try {
             FastDFSFile fastDFSFile = new FastDFSFile(file.getOriginalFilename(), file.getBytes(), StringUtils.getFilenameExtension(file.getOriginalFilename()));
             String[] upload = FastDFSClient.upload(fastDFSFile);
-            String url = "http://139.9.62.232:8080/" + upload[0] + "/" + upload[1];
+            String url = FastDFSClient.getTrackerUrl() + upload[0] + "/" + upload[1];
             return new Result(true, StatusCode.OK,url);
         } catch (IOException e) {
             e.printStackTrace();
@@ -33,4 +33,6 @@ public class FileController {
         return null;
 
     }
+
+
 }

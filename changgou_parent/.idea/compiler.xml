@@ -10,10 +10,13 @@
         <module name="changgou_common" />
         <module name="changgou_gateway" />
         <module name="changgou_common_db" />
+        <module name="code-template" />
         <module name="changgou_eureka" />
-        <module name="changgou_service_goods" />
-        <module name="changgou_service_file" />
+        <module name="changgou_service_search_api" />
         <module name="changgou_service_goods_api" />
+        <module name="changgou_service_search" />
+        <module name="changgou_service_file" />
+        <module name="changgou_service_goods" />
       </profile>
     </annotationProcessing>
   </component>
@@ -29,6 +32,8 @@
       <module name="changgou_service_file" options="-parameters" />
       <module name="changgou_service_goods" options="-parameters" />
       <module name="changgou_service_goods_api" options="-parameters" />
+      <module name="changgou_service_search" options="-parameters" />
+      <module name="changgou_service_search_api" options="-parameters" />
       <module name="changgou_web" options="-parameters" />
     </option>
   </component>

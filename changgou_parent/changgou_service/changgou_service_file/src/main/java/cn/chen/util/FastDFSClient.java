@@ -142,7 +142,7 @@ public class FastDFSClient {
         return storeStorage;
     }
 
-    
+
     public static StorageServer getServerInfo(String groupname, String remoteFilename){
         StorageServer fetchStorage = null ;
         try {
@@ -155,12 +155,34 @@ public class FastDFSClient {
         }
         return fetchStorage;
     }
+
+    /**
+     * 获取Tracker服务地址
+     * @return
+     */
+    public static String getTrackerUrl(){
+        try {
+            //3、创建一个TrackerClient对象。直接new一个。
+            TrackerClient trackerClient = new TrackerClient();
+            //4、使用TrackerClient对象创建连接，getConnection获得一个TrackerServer对象。
+            TrackerServer trackerServer = trackerClient.getConnection();
+            //拼接TrackerUrl
+            String url = "http://" + trackerServer.getInetSocketAddress().getHostString() + ":"
+                    + ClientGlobal.getG_tracker_http_port() + "/";
+            return url;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     //测试方法
     public static void main(String[] args) {
         //group1/M00/00/00/wKjThF1pAcKAYNhxAA832942OCg928.jpg
         FileInfo info = getFileInfo("group1", "M00/00/00/wKgACl24NaWAUh0zAAGgLl1xpc450.jpeg");
         StorageServer storageServer = getStorageServer("group1");
-        System.out.println(storageServer.getInetSocketAddress());
+        String trackerUrl = getTrackerUrl();
+        System.out.println(trackerUrl);
         System.out.println(info);
     }
 }
