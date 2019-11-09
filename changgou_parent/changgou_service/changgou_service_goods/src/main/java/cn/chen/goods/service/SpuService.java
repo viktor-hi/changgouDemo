@@ -1,5 +1,6 @@
 package cn.chen.goods.service;
 
+import cn.chen.goods.pojo.Goods;
 import cn.chen.goods.pojo.Spu;
 import com.github.pagehelper.PageInfo;
 
@@ -66,4 +67,58 @@ public interface SpuService {
      * @return
      */
     List<Spu> findAll();
+    /**
+     * 保存商品
+     * @param goods
+     */
+    void saveGoods(Goods goods);
+    /***
+     * 根据SPU的ID查找SPU以及对应的SKU集合
+     * @param spuId
+     */
+    Goods findGoodsById(Long spuId);
+
+    /***
+     * 商品审核
+     * @param spuId
+     */
+    void audit(Long spuId);
+
+    /***
+     * 商品下架
+     * @param spuId
+     */
+    void pull(Long spuId);
+
+    /***
+     * 商品上架
+     * @param spuId
+     */
+    void put(Long spuId);
+
+    /**
+     * 批量上架
+     * @param ids
+     * @return
+     */
+    int putMany(Long[] ids);
+
+    /**
+     * 批量下架
+     * @param ids
+     * @return
+     */
+    int pullMany(Long[] ids);
+
+    /***
+     * 逻辑删除
+     * @param spuId
+     */
+    void logicDelete(Long spuId);
+
+    /***
+     * 还原被删除商品
+     * @param spuId
+     */
+    void restore(Long spuId);
 }

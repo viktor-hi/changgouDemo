@@ -1,5 +1,6 @@
 package cn.chen.goods.controller;
 
+import cn.chen.goods.pojo.Goods;
 import cn.chen.goods.pojo.Spu;
 import cn.chen.goods.service.SpuService;
 import com.github.pagehelper.PageInfo;
@@ -123,5 +124,103 @@ public class SpuController {
         //调用SpuService实现查询所有Spu
         List<Spu> list = spuService.findAll();
         return new Result<List<Spu>>(true, StatusCode.OK,"查询成功",list) ;
+    }
+
+    /***
+     * 添加Goods
+     * @param goods
+     * @return
+     */
+    @PostMapping("save")
+    public Result save(@RequestBody Goods goods){
+
+        spuService.saveGoods(goods);
+        return new Result(true,StatusCode.OK,"保存成功");
+    }
+
+    /***
+     * 根据id查询spu
+     * @return
+     */
+    @GetMapping("goods/{spuId}")
+    public Result<Goods> findGoodsById(@PathVariable Long spuId){
+        Goods goods = spuService.findGoodsById(spuId);
+        return new Result<Goods>(true, StatusCode.OK,"查询成功",goods) ;
+    }
+
+    /**
+     * 审核商品
+     * @param id
+     * @return
+     * */
+    @PutMapping("/audit/{id}")
+    public Result audit(@PathVariable Long id){
+        spuService.audit(id);
+        return new Result(true,StatusCode.OK,"审核成功");
+    }
+
+    /**
+     * 下架
+     * @param id
+     * @return
+     */
+    @PutMapping("/pull/{id}")
+    public Result pull(@PathVariable Long id){
+        spuService.pull(id);
+        return new Result(true,StatusCode.OK,"下架成功");
+    }
+
+    /**
+     * 上架
+     * @param id
+     * @return
+     */
+    @PutMapping("/put/{id}")
+    public Result put(@PathVariable Long id){
+        spuService.put(id);
+        return new Result(true,StatusCode.OK,"上架成功");
+    }
+
+    /**
+     *  批量上架
+     * @param ids
+     * @return
+     */
+    @PutMapping("/put/many")
+    public Result putMany(@RequestBody Long[] ids){
+        int count = spuService.putMany(ids);
+        return new Result(true,StatusCode.OK,"上架"+count+"个商品");
+    }
+
+    /**
+     *  批量下架
+     * @param ids
+     * @return
+     */
+    @PutMapping("/pull/many")
+    public Result pullMany(@RequestBody Long[] ids){
+        int count = spuService.pullMany(ids);
+        return new Result(true,StatusCode.OK,"下架"+count+"个商品");
+    }
+
+    /**
+     * 逻辑删除
+     * @param id
+     * @return
+     */
+    @DeleteMapping("/logic/delete/{id}")
+    public Result logicDelete(@PathVariable Long id){
+        spuService.logicDelete(id);
+        return new Result(true,StatusCode.OK,"逻辑删除成功！");
+    }
+
+    /**
+     * 恢复数据
+     * @return
+     */
+    @PutMapping("/restore/{id}")
+    public Result restore(@PathVariable Long id){
+        spuService.restore(id);
+        return new Result(true,StatusCode.OK,"数据恢复成功！");
     }
 }

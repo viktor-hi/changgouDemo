@@ -16,6 +16,7 @@
         <module>changgou_eureka</module>
         <module>changgou_common</module>
         <module>changgou_common_db</module>
+        <module>changgou_user_oauth</module>
     </modules>
 
 
@@ -58,6 +59,12 @@
         <!--
             http://localhost:9011/swagger-ui.html
         -->
+        <!--鉴权-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.0</version>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
