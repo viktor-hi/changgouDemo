@@ -1,5 +1,5 @@
 package cn.chen.oauth.config;
-import com.changgou.oauth.util.UserJwt;
+import cn.chen.oauth.util.UserJwt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -53,7 +53,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         //根据用户名查询用户信息
         String pwd = new BCryptPasswordEncoder().encode("szitheima");
         //创建User对象
-        String permissions = "goods_list,seckill_list";
+        String permissions = "user,salesman";
+        //String permissions = "goods_list,seckill_list";
         UserJwt userDetails = new UserJwt(username,pwd,AuthorityUtils.commaSeparatedStringToAuthorityList(permissions));
         return userDetails;
     }

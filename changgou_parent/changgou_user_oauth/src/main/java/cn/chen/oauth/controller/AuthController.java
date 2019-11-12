@@ -1,8 +1,8 @@
 package cn.chen.oauth.controller;
 
-import com.changgou.oauth.service.AuthService;
-import com.changgou.oauth.util.AuthToken;
-import com.changgou.oauth.util.CookieUtil;
+import cn.chen.oauth.service.AuthService;
+import cn.chen.oauth.util.AuthToken;
+import cn.chen.oauth.util.CookieUtil;
 import entity.Result;
 import entity.StatusCode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +41,7 @@ public class AuthController {
     @Value("${auth.cookieMaxAge}")
     private int cookieMaxAge;
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     AuthService authService;
 

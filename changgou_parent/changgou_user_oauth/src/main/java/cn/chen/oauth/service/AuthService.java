@@ -1,6 +1,6 @@
 package cn.chen.oauth.service;
 
-import com.changgou.oauth.util.AuthToken;
+import cn.chen.oauth.util.AuthToken;
 
 /*****
  * @Author: Steven

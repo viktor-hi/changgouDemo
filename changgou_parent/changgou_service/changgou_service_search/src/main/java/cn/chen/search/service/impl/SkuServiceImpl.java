@@ -175,7 +175,7 @@ public class SkuServiceImpl implements SkuService {
             PageRequest pageRequest = PageRequest.of(page, pageSize);
             //设置分页查询
             builder.withPageable(pageRequest);
-//排序
+            //排序
             //排序方式:ASC|DESC
             String sortRule = searchMap.get("sortRule") == null ? "" : searchMap.get("sortRule");
             //排序域名

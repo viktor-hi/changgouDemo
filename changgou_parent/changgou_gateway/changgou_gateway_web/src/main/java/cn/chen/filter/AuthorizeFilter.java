@@ -70,9 +70,9 @@ public class AuthorizeFilter  implements GlobalFilter, Ordered {
                 return  response.setComplete();
             }else {
                 //取得令牌，校验令牌
-                try {
-                    Claims claims = JwtUtil.parseJWT(token);
-                    request.mutate().header(AUTHORIZE_TOKEN, claims.toString());
+                try {//Claims claims = JwtUtil.parseJWT(token);
+                    //4.5.1解析成功-把令牌返回-request.mutate().header(key,value)
+                    request.mutate().header(AUTHORIZE_TOKEN, "bearer " + token);
                 } catch (Exception e) {
                     //校验失败处理结果
                     e.printStackTrace();

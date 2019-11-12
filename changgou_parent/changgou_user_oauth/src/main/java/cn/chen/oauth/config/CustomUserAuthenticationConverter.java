@@ -1,6 +1,7 @@
 package cn.chen.oauth.config;
 
-import com.changgou.oauth.util.UserJwt;
+import cn.chen.oauth.util.UserJwt;
+import cn.chen.oauth.util.UserJwt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;

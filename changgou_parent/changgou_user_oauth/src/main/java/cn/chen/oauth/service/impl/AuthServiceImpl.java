@@ -1,8 +1,8 @@
 package cn.chen.oauth.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.changgou.oauth.service.AuthService;
-import com.changgou.oauth.util.AuthToken;
+import cn.chen.oauth.service.AuthService;
+import cn.chen.oauth.util.AuthToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;

@@ -8,6 +8,8 @@ spring:
     url: jdbc:mysql://116.85.35.70:33306/changgou_user?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
     username: root
     password: 123456
+  redis:
+    host: 116.85.35.70
 eureka:
   client:
     service-url:

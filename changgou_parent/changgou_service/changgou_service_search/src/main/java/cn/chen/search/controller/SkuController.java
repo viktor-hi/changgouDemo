@@ -13,7 +13,7 @@ import java.util.Map;
  * @time 2019-11-04
  */
 @RestController
-@RequestMapping(value = "search")
+@RequestMapping(value = "/search")
 @CrossOrigin
 public class SkuController {
 
@@ -24,7 +24,7 @@ public class SkuController {
      * 导入数据
      * @return
      */
-    @GetMapping("import")
+    @GetMapping("/import")
     public Result search(){
         skuService.importSku();
         return new Result(true, StatusCode.OK,"导入数据到索引库中成功！");
