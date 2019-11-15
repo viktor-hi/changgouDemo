@@ -32,13 +32,13 @@ public class CreateJwtTest {
     @Test
     public void testCreateToken(){
         //证书文件路径
-        String key_location="changgou.jks";
+        String key_location="haixin.jks";
         //秘钥库密码
-        String key_password="changgou";
+        String key_password="131313";
         //秘钥密码
-        String keypwd = "changgou";
+        String keypwd = "131313";
         //秘钥别名
-        String alias = "changgou";
+        String alias = "haixin";
 
         //访问证书路径
         ClassPathResource resource = new ClassPathResource(key_location);

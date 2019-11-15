@@ -68,7 +68,7 @@ public class AuthServiceImpl implements AuthService {
         if (serviceInstance == null) {
             throw new RuntimeException("找不到对应的服务");
         }
-        //获取令牌的url
+        //
         String path = serviceInstance.getUri().toString() + "/oauth/token";
         //定义body
         MultiValueMap<String, String> formData = new LinkedMultiValueMap<>();

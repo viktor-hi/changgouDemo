@@ -10,10 +10,12 @@
     <file url="file://$PROJECT_DIR$/changgou_service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/changgou_service/changgou_service_file" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/changgou_service/changgou_service_goods" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/changgou_service/changgou_service_order" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/changgou_service/changgou_service_search" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/changgou_service/changgou_service_user" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/changgou_service_api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/changgou_service_api/changgou_service_goods_api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/changgou_service_api/changgou_service_order_api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/changgou_service_api/changgou_service_search_api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/changgou_service_api/changgou_service_user_api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/changgou_user_oauth" charset="UTF-8" />

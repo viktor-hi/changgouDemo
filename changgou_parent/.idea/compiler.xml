@@ -12,8 +12,10 @@
         <module name="changgou_service_file" />
         <module name="changgou_eureka" />
         <module name="changgou_service_search" />
+        <module name="changgou_service_order" />
         <module name="changgou_service_goods" />
         <module name="changgou_common_db" />
+        <module name="changgou_service_order_api" />
         <module name="changgou_service_user" />
         <module name="changgou_gateway_web" />
         <module name="changgou_common" />
@@ -36,6 +38,8 @@
       <module name="changgou_service_file" options="-parameters" />
       <module name="changgou_service_goods" options="-parameters" />
       <module name="changgou_service_goods_api" options="-parameters" />
+      <module name="changgou_service_order" options="-parameters" />
+      <module name="changgou_service_order_api" options="-parameters" />
       <module name="changgou_service_search" options="-parameters" />
       <module name="changgou_service_search_api" options="-parameters" />
       <module name="changgou_service_user" options="-parameters" />

@@ -37,3 +37,4 @@ encrypt:
     secret: changgou  #密钥
     alias: changgou
     password: changgou
+
