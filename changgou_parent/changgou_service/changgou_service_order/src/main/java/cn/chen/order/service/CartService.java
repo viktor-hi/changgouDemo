@@ -1,5 +1,9 @@
 package cn.chen.order.service;
 
+import cn.chen.order.pojo.OrderItem;
+
+import java.util.List;
+
 /**
  * @author haixin
  * @time 2019-11-15
@@ -13,4 +17,11 @@ public interface CartService {
      * @return
      */
     void add(Integer num, Long skuId, String username);
+
+    /***
+     * 查询用户的购物车数据
+     * @param username
+     * @return
+     */
+    List<OrderItem> list(String username);
 }

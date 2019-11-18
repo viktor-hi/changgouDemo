@@ -7,16 +7,19 @@ import cn.chen.goods.pojo.Spu;
 import cn.chen.order.pojo.OrderItem;
 import cn.chen.order.service.CartService;
 import entity.Result;
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author haixin
  * @time 2019-11-15
  */
 @Service
-public class CartServiceImpl implements CartService {
+public class CartServiceImpl implements CartService{
     @Autowired
     private RedisTemplate redisTemplate;
 
@@ -30,6 +33,11 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void add(Integer num, Long skuId, String username) {
+        if(num <= 0){
+            //如果商品数量小于等于0，删除当前商品
+            redisTemplate.boundHashOps("Cart_" + username).delete(skuId);
+            return;
+        }
         //查询SKU
         Result<Sku> resultSku = skuFeign.findById(skuId);
         if (resultSku != null && resultSku.isFlag()) {
@@ -64,4 +72,11 @@ public class CartServiceImpl implements CartService {
             redisTemplate.boundHashOps("Cart_" + username).put(skuId, orderItem);
         }
     }
+
+    @Override
+    public List<OrderItem> list(String username) {
+        List<OrderItem> values = redisTemplate.boundHashOps("Cart_" + username).values();
+        return values;
+    }
+
 }
