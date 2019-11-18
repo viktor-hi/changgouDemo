@@ -37,4 +37,19 @@ encrypt:
     secret: changgou  #密钥
     alias: changgou
     password: changgou
-
+#开启容断器
+feign:
+  hystrix:
+    enabled: true
+#hystrix 配置
+#hystrix 配置
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            # 熔断超时设置，默认为1秒
+            timeoutInMilliseconds: 10000
+          #  隔离模式使用信号量隔离SEMAPHORE 默认值是线程隔离THREAD
+          strategy: SEMAPHORE

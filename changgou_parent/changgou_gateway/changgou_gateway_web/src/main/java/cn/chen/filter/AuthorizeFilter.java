@@ -33,18 +33,14 @@ public class AuthorizeFilter  implements GlobalFilter, Ordered {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 
         //1、获取Request、Response对象-exchange.get...
-//2、获取请求的URI-request.getURI().getPath()
-//3、如果是登录请求-uri.startsWith，放行-chain.filter
-//4、如果是非登录请求
-
-
-
-
-// 4.5 如果获取到了令牌，解析令牌-JwtUtil.parseJWT，放行-chain.filter(exchange)
+        //2、获取请求的URI-request.getURI().getPath()
+        //3、如果是登录请求-uri.startsWith，放行-chain.filter
+        //4、如果是非登录请求
+        // 4.5 如果获取到了令牌，解析令牌-JwtUtil.parseJWT，放行-chain.filter(exchange)
         ServerHttpRequest request = exchange.getRequest();
         ServerHttpResponse response = exchange.getResponse();
         String path = request.getURI().getPath();
-        if (path.startsWith("/api/user/login")) {
+        if (!URLFilter.hasAuthorize(path)) {
             chain.filter(exchange);
         }else {
             //4.1 获取前端传入的令牌-从请求头中获取-request.getHeaders().getFirst
